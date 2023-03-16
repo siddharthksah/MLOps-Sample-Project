@@ -7,35 +7,84 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![](https://scontent.fbru1-1.fna.fbcdn.net/v/t1.0-9/94305647_112517570431823_3318660558911176704_o.png?_nc_cat=111&_nc_sid=e3f864&_nc_ohc=-spbrtnzSpQAX_qi7iI&_nc_ht=scontent.fbru1-1.fna&oh=483d147a29972c72dfb588b91d57ac3c&oe=5F99368A "Logo")
 
-**NOTE:** This is a best-practices first project template that allows you to get started on a new machine learning project. For more info on how to use it check out [HOWTO.md](HOWTO.md). Feel free to use it how it suits you best 🚀
+MLOps-Sample-Project/
+├── app/
+│   ├── main.py
+│   └── templates/
+│       └── index.html
+├── data/
+│   ├── processed/
+│   │   └── boston_housing_processed.csv
+│   └── raw/
+│       └── boston_housing.csv
+├── model/
+│   ├── artifacts/
+│   ├── logs/
+│   └── train.py
+├── .gitignore
+├── Dockerfile
+├── namespace.yaml
+├── deployment.yaml
+├── service.yaml
+├── README.md
+└── requirements.txt
 
-# `PROJECT NAME`
 
-> project for: `client name`  
+This project structure includes the Flask app, data, model training script, Dockerfile for containerization, Kubernetes configuration files for deployment, and a README file with detailed instructions on how to use the project.
 
-## Objective
+Installation
+Clone Repository
+Clone this repository to your local machine:
 
-`ADD OBJECTIVE OF CASE`
+```
+git clone https://github.com/yourusername/MLOps-Sample-Project.git
+cd MLOps-Sample-Project
+```
 
-## Explorative results
+Create a Virtual Environment
+Create a Python virtual environment to manage dependencies:
 
-`SHORT SUMMARY AND LINK TO REPORT`
 
-## Modelling results
+python3 -m venv venv
+source venv/bin/activate
+Install Dependencies
+Install the required Python packages:
 
-`SHORT SUMMARY AND LINK TO REPORT`
+bash
+Copy code
+pip install -r requirements.txt
+Usage
+Train the Model
+Train the regression model on the Boston Housing dataset:
 
-## Usage
 
-`ADD EXPLANATION`
+python model/train.py
+This will preprocess the data, train the model, and save the trained model and preprocessing pipeline artifacts to the model/artifacts directory. It will also log relevant metrics and parameters to MLflow.
 
-## Configuration
+Run the Flask App
+Run the Flask app to serve the trained model as an API:
 
-`RELEVANT INFO ON CONFIGURATION`
 
-## Deploy
+python app/main.py
+The app will be available at http://localhost:5000. Enter feature values in the form, and the app will predict the housing price using the trained model.
 
-`RELEVANT INFO ON DEPLOYMENT`
+Deploy to Production
+Docker Deployment
+To deploy the app to production using Docker, follow these steps:
 
-> copyright by `your company`
-> main developer `developer_name` (`developer email`)
+Install Docker on your machine.
+
+Build the Docker image:
+
+docker build -t mlops-sample-project .
+Run the Docker container:
+
+bash
+Copy code
+docker run -d -p 5000:5000 --name mlops-sample-project mlops-sample-project
+The app will now be accessible at http://localhost:5000.
+
+Kubernetes Deployment
+To deploy the app to production using Kubernetes, follow these steps:
+
+

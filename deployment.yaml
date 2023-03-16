@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-sample-project
+  namespace: mlops-sample-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlops-sample-project
+  template:
+    metadata:
+      labels:
+        app: mlops-sample-project
+    spec:
+      containers:
+      - name: mlops-sample-project
+        image: <your-docker-hub-username>/mlops-sample-project:latest
+        ports:
+        - containerPort: 5000
