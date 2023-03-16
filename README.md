@@ -2,7 +2,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## MLOps Sample Project 🚀
-Welcome to this fantastic MLOps Sample Project! 😄 We will guide you through an end-to-end machine learning pipeline, from data preprocessing to model deployment, using MLOps best practices. Get ready to build a regression model that predicts housing prices using the classic Boston Housing dataset. 🏠
+Welcome to this fantastic MLOps Sample Project! 😄 I will guide you through an end-to-end machine learning pipeline, from data preprocessing to model deployment, using MLOps best practices. Get ready to build a regression model that predicts housing prices using the classic Boston Housing dataset. 🏠
 
 ## Table of Contents 📚
 Project Structure
