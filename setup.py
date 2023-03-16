@@ -18,12 +18,12 @@ serve_deps = [
 extras = {"test": test_deps, "serve": serve_deps}
 
 setup(
-    name="ml-skeleton-py",
+    name="mlops-sample-project",
     version="0.1.0",
-    url="dataroots.io",
-    author="dataroots.io",
-    author_email="info@dataroots.io",
-    description="Description of my ml-skeleton package",
+    url="siddharthsah.com",
+    author="siddharthksah",
+    author_email="siddharth123sk@gmail.com",
+    description="An end-to-end sample MLOps project",
     packages=find_packages(),
     install_requires=["pandas>=1.3.2", "scikit-learn>=0.24.2"],
     tests_require=test_deps,

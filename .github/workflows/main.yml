@@ -1,0 +1,42 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r app/requirements.txt
+
+    - name: Run Tests
+      run: |
+        # Add commands to run your tests here, e.g., pytest
+
+    - name: Train Model
+      run: |
+        python model/train.py
+
+    - name: Build Docker Image
+      run: |
+        docker build -t my_ml_project .
+
+    - name: Deploy to AWS Elastic Beanstalk
+      run: |
+        # Add the necessary commands to deploy your Docker container to AWS Elastic Beanstalk
