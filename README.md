@@ -21,7 +21,7 @@ Contributing
 
 ## Project Structure 🏗️
 
-[!Directory]("directory.png")
+[!Directory](directory.png)
 
 This project structure includes the Flask app, data, model training script, Dockerfile for containerization, Kubernetes configuration files for deployment, and a README file with detailed instructions on how to use the project.
 
