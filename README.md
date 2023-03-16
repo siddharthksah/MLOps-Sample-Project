@@ -21,28 +21,7 @@ Contributing
 
 ## Project Structure 🏗️
 
-.
-├── MLOps-Sample-Project/
-├── ├── app/
-├── │   ├── main.py
-├── │   └── templates/
-├── │       └── index.html
-├── ├── data/
-├── │   ├── processed/
-├── │   │   └── boston_housing_processed.csv
-├── │   └── raw/
-├── │       └── boston_housing.csv
-├── ├── model/
-├── │   ├── artifacts/
-├── │   ├── logs/
-├── │   └── train.py
-├── ├── .gitignore
-├── ├── Dockerfile
-├── ├── namespace.yaml
-├── ├── deployment.yaml
-├── ├── service.yaml
-├── ├── README.md
-└── └── requirements.txt
+[!Directory]("directory.png")
 
 This project structure includes the Flask app, data, model training script, Dockerfile for containerization, Kubernetes configuration files for deployment, and a README file with detailed instructions on how to use the project.
 
