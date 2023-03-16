@@ -1,11 +1,5 @@
-
-[![maintained by dataroots](https://img.shields.io/badge/maintained%20by-dataroots-%2300b189)](https://dataroots.io)
-[![PythonVersion](https://img.shields.io/pypi/pyversions/gino_admin)](https://img.shields.io/pypi/pyversions/gino_admin)
-[![tests](https://github.com/datarootsio/ml-skeleton-py/workflows/tests/badge.svg?branch=master)](https://github.com/datarootsio/ml-skeleton-py/actions)
-[![Codecov](https://codecov.io/github/datarootsio/ml-skeleton-py/badge.svg?branch=master&service=github)](https://github.com/datarootsio/ml-skeleton-py/actions)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![](https://scontent.fbru1-1.fna.fbcdn.net/v/t1.0-9/94305647_112517570431823_3318660558911176704_o.png?_nc_cat=111&_nc_sid=e3f864&_nc_ohc=-spbrtnzSpQAX_qi7iI&_nc_ht=scontent.fbru1-1.fna&oh=483d147a29972c72dfb588b91d57ac3c&oe=5F99368A "Logo")
 
 MLOps-Sample-Project/
 ├── app/
@@ -43,48 +37,145 @@ cd MLOps-Sample-Project
 
 Create a Virtual Environment
 Create a Python virtual environment to manage dependencies:
-
-
+```
 python3 -m venv venv
 source venv/bin/activate
+```
 Install Dependencies
 Install the required Python packages:
 
-bash
-Copy code
+```
 pip install -r requirements.txt
+```
+
 Usage
 Train the Model
 Train the regression model on the Boston Housing dataset:
 
-
 python model/train.py
+
 This will preprocess the data, train the model, and save the trained model and preprocessing pipeline artifacts to the model/artifacts directory. It will also log relevant metrics and parameters to MLflow.
 
 Run the Flask App
+
 Run the Flask app to serve the trained model as an API:
 
 
 python app/main.py
+
 The app will be available at http://localhost:5000. Enter feature values in the form, and the app will predict the housing price using the trained model.
 
 Deploy to Production
+
 Docker Deployment
+
 To deploy the app to production using Docker, follow these steps:
 
 Install Docker on your machine.
 
 Build the Docker image:
-
+```
 docker build -t mlops-sample-project .
+```
+
 Run the Docker container:
 
-bash
-Copy code
+```
 docker run -d -p 5000:5000 --name mlops-sample-project mlops-sample-project
+```
 The app will now be accessible at http://localhost:5000.
 
 Kubernetes Deployment
 To deploy the app to production using Kubernetes, follow these steps:
+
+Push your Docker image to Docker Hub. First, log in to Docker Hub:
+
+```
+docker login
+```
+
+Then, tag your image:
+
+```
+docker tag mlops-sample-project:latest <your-docker-hub-username>/mlops-sample-project:latest
+```
+
+Finally, push the image:
+
+```
+docker push <your-docker-hub-username>/mlops-sample-project:latest
+```
+
+Apply the Kubernetes configuration files to your cluster:
+```
+kubectl apply -f namespace.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+Check the status of your deployment and service:
+
+```
+kubectl -n mlops-sample-project get deployments
+kubectl -n mlops-sample-project get services
+```
+
+Wait for the deployment to become available and the service to get an external IP address. Once the service has an external IP, you can access the application at http://<external-ip>/.
+
+This setup deploys your application to a Kubernetes cluster and exposes it via a LoadBalancer service. You can further enhance this setup by configuring autoscaling, adding monitoring and logging, and using Kubernetes secrets for managing sensitive data.
+
+
+AWS Deployment
+To deploy the app to AWS, we'll use Amazon Elastic Kubernetes Service (EKS) to manage our Kubernetes cluster and the deployment process.
+
+Prerequisites
+Install AWS CLI and configure it with your AWS account credentials.
+Install eksctl, the official CLI tool for Amazon EKS, by following the installation instructions.
+Install kubectl for interacting with the Kubernetes cluster.
+Create an Amazon EKS Cluster
+Create a new Amazon EKS cluster using eksctl:
+
+```
+eksctl create cluster --name mlops-sample-project --region us-west-2 --managed
+```
+
+This command creates a managed Kubernetes cluster in the us-west-2 region. It might take a few minutes for the cluster to be created.
+
+Verify that the cluster has been created and that kubectl is configured to use it:
+
+```
+kubectl config use-context mlops-sample-project.us-west-2.eksctl.io
+kubectl get nodes
+```
+
+Deploy the App
+Apply the Kubernetes configuration files to your cluster:
+
+```
+kubectl apply -f namespace.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Check the status of your deployment and service:
+
+```
+kubectl -n mlops-sample-project get deployments
+kubectl -n mlops-sample-project get services
+```
+Wait for the deployment to become available and the service to get an external IP address. Once the service has an external IP, you can access the application at http://<external-ip>/.
+
+Clean Up
+To delete the Amazon EKS cluster and associated resources, run the following command:
+
+```
+eksctl delete cluster --name mlops-sample-project --region us-west-2
+```
+This will remove the EKS cluster and all associated resources, including the deployed application.
+
+
+
+Contributing
+Feel free to contribute to this project by opening issues, submitting pull requests, or providing feedback.
+
 
 

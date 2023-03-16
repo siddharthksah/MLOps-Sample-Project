@@ -17,4 +17,4 @@ spec:
       - name: mlops-sample-project
         image: <your-docker-hub-username>/mlops-sample-project:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 5001
